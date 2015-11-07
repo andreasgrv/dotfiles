@@ -11,6 +11,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
@@ -34,6 +35,7 @@ Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " added for html - 2015-08-05 12:48
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'dkprice/vim-easygrep'
 
 call plug#end()
 
@@ -130,6 +132,12 @@ let g:ycm_key_list_previous_completion=['<C-j>']
 " let g:ycm_autoclose_preview_window_after_completion = 1
 " close window that shows prototypes after exiting insertion mode
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" close window that shows prototypes after exiting insertion mode
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" added by grv - Wed 19 Aug 2015 08:08:29 AM EEST
+" use eclim for java
+let g:EclimCompletionMethod = 'omnifunc'
 
 " use shift plus tab for snippet completion 
 " then ctrl plus direction to skip completes - 2015-08-05 00:24
@@ -174,7 +182,7 @@ autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
 autocmd FileType tex let g:livepreview_previewer = 'evince'
 "-------------------------- Java --------------------------"
 " change tabs to spaces for Java
-autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
 " easy print using surround with char p
 autocmd FileType java let g:surround_112 = "System.out.println(\r);"
 
