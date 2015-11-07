@@ -19,13 +19,14 @@ Plug 'airblade/vim-gitgutter'
 " utils
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 " autocomplete + snippets
 Plug 'Valloric/YouCompleteMe'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-" syntax + highlighting
+" syntax + tags + highlighting
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular', { 'for': 'mkd' }
 Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
@@ -69,9 +70,12 @@ set visualbell "No sounds - Thank you sooooo much! : https://github.com/skwp/dot
 " Make searches match incrementally! - 2015-08-05 00:16
 set incsearch
 
+" use menu with autocompletions
 set wildmenu
 set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so
 
+" make vim search for tags in .tags as well
+set tags+=.tags
 " quicker window switching
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -111,6 +115,8 @@ colorscheme jellybeans
 
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :TagbarToggle<CR>
+nnoremap <F8> :!/usr/bin/ctags -R<CR>
 
 " ------------------- Airline settings ----------------------------------"
 
@@ -226,5 +232,6 @@ highlight LineNr term=bold ctermfg=LightGray guifg=LightGray
 " Vertical split colors and settings - 2015-08-05 00:04
 set fillchars+=vert:*
 highlight VertSplit term=bold ctermfg=blue guifg=blue
+highlight WildMenu term=bold ctermfg=blue guifg=blue
 " set fillchars+=stl:*
 " set fillchars+=stlnc:*
