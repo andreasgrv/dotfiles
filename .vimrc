@@ -11,31 +11,34 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-git'
+" aesthetics
 Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
-Plug 'tomtom/tlib_vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
+" utils
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+" autocomplete + snippets
+Plug 'Valloric/YouCompleteMe'
 Plug 'sirver/ultisnips'
-" Plug 'vim-scripts/SQLComplete.vim'
-Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
-Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
-" for markdown syntax highlighting 2015-08-05 00:23
+Plug 'honza/vim-snippets'
+" syntax + highlighting
+Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular', { 'for': 'mkd' }
+Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
-" added for text and tex stuff - need to look further -	2015-08-05 00:23
-Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
-" added for html - 2015-08-05 12:48
-Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
+Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'dkprice/vim-easygrep'
+Plug 'JulesWang/css.vim', { 'for': ['css', 'html'] }
+Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
+Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
+Plug 'tshirtman/vim-cython', { 'for': ['pyrex']}
+" text and tex stuff
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 
 call plug#end()
 
@@ -56,8 +59,8 @@ set cursorline
 " line numbering 
 set number " line numbering stuff
 set numberwidth=3 " how much width the column is at the beginning
-" show 3 lines above and below
-set scrolloff=3
+" show 4 lines above and below
+set scrolloff=4
 " automatically read changes made outside vim if not changed in vim
 set autoread
 set backspace=indent,eol,start
@@ -65,13 +68,19 @@ set backspace=indent,eol,start
 set visualbell "No sounds - Thank you sooooo much! : https://github.com/skwp/dotfiles
 " Make searches match incrementally! - 2015-08-05 00:16
 set incsearch
-"
-" -------------------- Bad habit removal ------------------------------"
 
-nmap <Left> [f
-nmap <Right> ]f
-vmap <Left> [f
-vmap <Right> ]f
+set wildmenu
+set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so
+
+" quicker window switching
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" -------------------- Bad habit removal ------------------------------"
+nnoremap <Right> :tnext<CR>
+nnoremap <Left> :tprev<CR>
 
 nmap <Up> [l
 nmap <Down> ]l
@@ -117,6 +126,8 @@ let g:syntastic_auto_jump = 1
 " C support "
 let g:syntastic_c_check_header = 1
 let g:syntastic_c_auto_refresh_includes = 1
+let g:syntastic_cpp_include_dirs = ['include', '../include']
+let g:syntastic_c_include_dirs = ['include', '../include']
 " Be able to jump to errors with :lnext and :lprev
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
@@ -158,19 +169,19 @@ augroup pencil
 augroup END
 
 "------------------- Filetype Specifics --------------------------"
-"-------------------------- HTML --------------------------"
-" smaller indentation for html
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
 "-------------------------- Python --------------------------"
 " change tabs to spaces for python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 " easy print using surround with char p
 autocmd FileType python let g:surround_112 = "print(\r)"
+
 "-------------------------- C++ --------------------------"
 " change tabs to spaces for C++
 autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 " easy print using surround with char p
 autocmd FileType cpp let g:surround_112 = "std::cout<<\r<<std::endl;"
+
 "-------------------------- TeX --------------------------"
 " smaller indentation for tex. we also want greek support
 autocmd FileType tex setlocal shiftwidth=2 tabstop=2 softtabstop=2 " keymap=greek_utf-8
@@ -180,15 +191,33 @@ autocmd FileType tex let g:surround_108 = "\\begin{\1environment: \1}\n\r\n\\end
 autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
 " use evince as previewer for tex
 autocmd FileType tex let g:livepreview_previewer = 'evince'
+
 "-------------------------- Java --------------------------"
 " change tabs to spaces for Java
-autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType java setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
 " easy print using surround with char p
 autocmd FileType java let g:surround_112 = "System.out.println(\r);"
 
 "-------------------------- Yaml --------------------------"
 " support yaml syntax using ansible
+autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 autocmd FileType yaml set ft=ansible
+
+"-------------------------- JSON --------------------------"
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+"-------------------------- HTML --------------------------"
+" smaller indentation for html
+autocmd FileType xml,html,htmldjango,htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml,html,htmldjango,htmljinja noremap <buffer> <leader>r :call HtmlBeautify()<cr>
+
+"-------------------------- CSS ---------------------------"
+autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+
+"----------------------- Javascript -----------------------"
+autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
 
 " Stuff about how the window looks - 2015-08-05 00:04
 " The colors of the numbers - 2015-08-05 00:04
