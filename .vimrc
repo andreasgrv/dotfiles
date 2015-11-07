@@ -131,7 +131,7 @@ let g:ycm_key_list_previous_completion=['<C-j>']
 " close window that shows prototypes after completion
 " let g:ycm_autoclose_preview_window_after_completion = 1
 " close window that shows prototypes after exiting insertion mode
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 " close window that shows prototypes after exiting insertion mode
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 
