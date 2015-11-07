@@ -1,6 +1,8 @@
 [user]
 	name = grv
 	email = andreasgrv@gmail.com
+[core]
+    excludesfile = ~/.gitignore
 # stolen from http://githowto.com/aliases
 [alias]
   co = checkout
