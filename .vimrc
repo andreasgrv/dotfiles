@@ -36,7 +36,7 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'JulesWang/css.vim', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
-Plug 'tshirtman/vim-cython', { 'for': ['pyrex']}
+Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
