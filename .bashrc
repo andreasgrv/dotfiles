@@ -27,6 +27,9 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# add git autocompletion
+source ~/.git-completion.sh
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -71,7 +74,7 @@ unset color_prompt force_color_prompt
 case "$TERM" in
 xterm*|rxvt*)
     # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	PS1='[\[\e[1;32m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h:\W\[\e[0m\]]\$ '
+	PS1='[\[\e[1;32m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h:\W\[\e[1;34m\]$(__git_ps1 " (%s)")\[\e[0m\]]\$ '
 	;;
 *)
     ;;
