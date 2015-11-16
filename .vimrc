@@ -5,6 +5,7 @@ filetype off                   " required!
 
 call plug#begin()
 
+" pope section
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -40,6 +41,8 @@ Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
+" ipython intergration
+Plug 'ivanov/vim-ipython'
 
 call plug#end()
 
