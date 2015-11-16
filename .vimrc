@@ -223,7 +223,7 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 "-------------------------- HTML --------------------------"
 " smaller indentation for html
-autocmd FileType xml,html,htmldjango,htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType xml,html,htmldjango,htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType xml,html,htmldjango,htmljinja noremap <buffer> <leader>r :call HtmlBeautify()<cr>
 
 "-------------------------- CSS ---------------------------"
