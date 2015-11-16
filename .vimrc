@@ -64,6 +64,8 @@ set numberwidth=3 " how much width the column is at the beginning
 set scrolloff=4
 " automatically read changes made outside vim if not changed in vim
 set autoread
+" add title to vim window!
+set title
 set backspace=indent,eol,start
 " don't want annoying sounds - 2015-08-05 00:05
 set visualbell "No sounds - Thank you sooooo much! : https://github.com/skwp/dotfiles
