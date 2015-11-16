@@ -157,6 +157,10 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " close window that shows prototypes after exiting insertion mode
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_auto_trigger = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_invoke_completion = '<C-Space>'
 " added by grv - Wed 19 Aug 2015 08:08:29 AM EEST
 " use eclim for java
 let g:EclimCompletionMethod = 'omnifunc'
@@ -164,7 +168,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " use shift plus tab for snippet completion 
 " then ctrl plus direction to skip completes - 2015-08-05 00:24
 let g:UltiSnipsExpandTrigger="<S-Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"                                           
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
 let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 
 " ------------------- Pencil settings ----------------------------"
