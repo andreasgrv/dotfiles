@@ -13,6 +13,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git'
+Plug 'tpope/vim-dispatch'
 " aesthetics
 Plug 'bling/vim-airline'
 Plug 'flazz/vim-colorschemes'
@@ -81,6 +82,9 @@ set wildmenu
 set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so
 
 set splitright
+
+set shortmess=a
+set cmdheight=2
 " make vim search for tags in .tags as well
 set tags+=.tags
 " quicker window switching
@@ -106,23 +110,29 @@ map <ScrollWheelDown> 4<C-E>
 set foldmethod=indent
 set foldlevel=99
 
-" ----------------- Indentation settings --------------------------" 
+" ------------------- Indentation settings ------------------------" 
 
 set shiftwidth=4
 set tabstop=4
 " set expandtab " don't replace tabs by default
 set softtabstop=4
 
-" ------------- Colorscheme settings ----------------"
+" ------------------- Colorscheme settings ------------------------"
 
 "colorscheme railscasts
 colorscheme jellybeans
 
+" ----------------- Custom overrided commands -----------------------"
+"  use Silent to work with terminal vim - needs redrawing
+command! -nargs=1 Silent <bar> execute ':silent '.<q-args> <bar> execute ':redraw!'
 " ------------------- General keybindings -------------------------------"
 
+" run make
+nnoremap <F3> :Silent make<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
+" create ctags file
 nnoremap <F8> :!/usr/bin/ctags -R<CR>
 
 " ------------------- Airline settings ----------------------------------"
@@ -235,6 +245,9 @@ autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
 "----------------------- Javascript -----------------------"
 autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+
+" Make options 
+autocmd QuickFixCmdPost * nested cwindow | redraw!
 
 " Stuff about how the window looks - 2015-08-05 00:04
 " The colors of the numbers - 2015-08-05 00:04
