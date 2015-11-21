@@ -122,13 +122,10 @@ set softtabstop=4
 "colorscheme railscasts
 colorscheme jellybeans
 
-" ----------------- Custom overrided commands -----------------------"
-"  use Silent to work with terminal vim - needs redrawing
-command! -nargs=1 Silent <bar> execute ':silent '.<q-args> <bar> execute ':redraw!'
 " ------------------- General keybindings -------------------------------"
 
 " run make
-nnoremap <F3> :Silent make<CR>
+nnoremap <F3> :Make<CR>
 nnoremap <F4> :NERDTree<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
