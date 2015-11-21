@@ -38,6 +38,7 @@ Plug 'JulesWang/css.vim', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
@@ -79,6 +80,7 @@ set incsearch
 set wildmenu
 set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so
 
+set splitright
 " make vim search for tags in .tags as well
 set tags+=.tags
 " quicker window switching
