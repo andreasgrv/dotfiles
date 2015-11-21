@@ -52,52 +52,52 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>sans</name>
+      <name>Skyhook Mono Medium</name>
       <size>10</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
+      <name>Skyhook Mono Medium</name>
       <size>10</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>sans</name>
+      <name>Skyhook Mono</name>
       <size>10</size>
       <!-- font size in points -->
-      <weight>normal</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>sans</name>
+      <name>Skyhook Mono</name>
       <size>10</size>
       <!-- font size in points -->
-      <weight>normal</weight>
+      <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name/>
+      <name>Skyhook Mono</name>
       <size>8</size>
-      <weight/>
-      <slant/>
+      <weight>Normal</weight>
+      <slant>Normal</slant>
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Sans</name>
+      <name>Skyhook Mono</name>
       <size>8</size>
-      <weight/>
-      <slant/>
+      <weight>Normal</weight>
+      <slant>Normal</slant>
     </font>
   </theme>
   <desktops>
@@ -281,7 +281,7 @@
     </keybind>
     <keybind key="C-A-t">
       <action name="Execute">
-        <command>lxterminal</command>
+        <command>lxterminal --command tmux -2</command>
       </action>
     </keybind>
     <keybind key="C-A-w">
@@ -609,7 +609,7 @@
       </mousebind>
     </context>
     <context name="Desktop">
-			<!--
+      <!--
       <mousebind button="Up" action="Click">
         <action name="DesktopPrevious"/>
       </mousebind>
