@@ -109,7 +109,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export TERM=xterm-256color
+[ -z "$TMUX" ] && export TERM="xterm-256color"
 # use vi
 set -o vi
 # alias vim='gvim -v'
