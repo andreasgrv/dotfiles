@@ -69,8 +69,12 @@ set numberwidth=3 " how much width the column is at the beginning
 set scrolloff=4
 " automatically read changes made outside vim if not changed in vim
 set autoread
+" view outer changes if any when selecting the window
+au FocusGained,BufEnter * :silent! !
+
 " add title to vim window!
 set title
+
 set backspace=indent,eol,start
 " don't want annoying sounds - 2015-08-05 00:05
 set visualbell "No sounds - Thank you sooooo much! : https://github.com/skwp/dotfiles
@@ -142,7 +146,7 @@ let g:airline_theme='understated'
 " --------------------- Syntastic settings ------------------------------"
 " add checking for javascript + more options grv added @ 2015-11-01 21:04
 let g:syntastic_enable_signs = 1
-let g:syntastic_auto_jump = 1
+" let g:syntastic_auto_jump = 1
 " C support "
 let g:syntastic_c_check_header = 1
 let g:syntastic_c_auto_refresh_includes = 1
