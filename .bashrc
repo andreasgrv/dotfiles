@@ -87,8 +87,6 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
-alias lxterminal="lxterminal --command tmux -2"
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -121,9 +119,11 @@ if [ -e /etc/profile.d/vte.sh ]; then
     . /etc/profile.d/vte.sh
 fi
 
-if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-	powerline-daemon -q
-	POWERLINE_BASH_CONTINUATION=1
-	POWERLINE_BASH_SELECT=1
-    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# use powerline-shell
+function _update_ps1() {
+    PS1="$(~/.powerline-shell.py --cwd-mode dironly $? 2> /dev/null)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
