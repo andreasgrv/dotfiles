@@ -33,8 +33,8 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 " autocomplete + snippets
-Plug 'Valloric/YouCompleteMe'
-Plug 'sirver/ultisnips'
+Plug 'Valloric/YouCompleteMe', { 'on': [] }
+Plug 'sirver/ultisnips', { 'on': [] }
 Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
 Plug 'scrooloose/syntastic'
@@ -53,6 +53,13 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " ipython intergration
 Plug 'ivanov/vim-ipython'
+
+" plug hack from junegunn to load ycm and ultisnips on insert
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+augroup END
 
 call plug#end()
 
