@@ -23,7 +23,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-dispatch'
 " aesthetics
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
 " utils
@@ -33,7 +34,7 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 " autocomplete + snippets
-Plug 'Valloric/YouCompleteMe', { 'on': [] }
+Plug 'Valloric/YouCompleteMe', { 'on': [] , 'do': './install.py' }
 Plug 'sirver/ultisnips', { 'on': [] }
 Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
