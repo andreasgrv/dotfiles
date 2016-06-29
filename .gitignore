@@ -1,5 +1,3 @@
+*
+!.*
 .tags
-*.swp
-*.pyc
-*.o
-*.class
