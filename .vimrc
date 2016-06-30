@@ -27,13 +27,16 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
+Plug 'ryanoasis/vim-devicons'
 " utils
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'plugged/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'christoomey/vim-tmux-navigator'
 " autocomplete + snippets
 Plug 'Valloric/YouCompleteMe', { 'on': [] , 'do': './install.py' }
 Plug 'sirver/ultisnips', { 'on': [] }
