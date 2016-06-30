@@ -19,7 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-dispatch'
 " aesthetics
@@ -29,6 +29,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
 " utils
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'plugged/tcomment_vim'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
