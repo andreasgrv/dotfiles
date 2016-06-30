@@ -48,7 +48,7 @@ Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'JulesWang/css.vim', { 'for': ['css', 'html'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
