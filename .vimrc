@@ -180,7 +180,7 @@ let g:syntastic_c_include_dirs = ['include', '../include']
 " Be able to jump to errors with :lnext and :lprev
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " ------------------- YouCompleteMe settings ----------------------------"
 
