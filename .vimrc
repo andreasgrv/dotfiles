@@ -50,6 +50,7 @@ Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -58,7 +59,7 @@ Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " ipython intergration
-Plug 'ivanov/vim-ipython'
+" Plug 'ivanov/vim-ipython'
 
 " plug hack from junegunn to load ycm and ultisnips on insert
 augroup load_us_ycm
@@ -104,7 +105,7 @@ set incsearch
 
 " use menu with autocompletions
 set wildmenu
-set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so
+set wildignore+=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.so,*.swp
 
 set splitright
 
@@ -167,6 +168,10 @@ set laststatus=2 "used for airline
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='understated'
+
+" --------------------- Ctrlp settings ------------------------------"
+
+let g:ctrlp_working_path_mode = 'a'
 
 " --------------------- Syntastic settings ------------------------------"
 " add checking for javascript + more options grv added @ 2015-11-01 21:04
