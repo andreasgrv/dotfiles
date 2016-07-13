@@ -286,3 +286,8 @@ highlight VertSplit term=bold ctermfg=blue guifg=blue
 highlight WildMenu term=bold ctermfg=blue guifg=blue
 " set fillchars+=stl:*
 " set fillchars+=stlnc:*
+
+" Tmux stuff
+" change tmux window name according to active vim buffer
+autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window '" . expand("%:t") . "'")
+autocmd VimLeave * call system("tmux rename-window `basename $SHELL`")
