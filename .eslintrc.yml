@@ -4,6 +4,8 @@ env:
   jquery: true
 extends: 'eslint:recommended'
 parserOptions:
+  ecmaFeatures:
+    jsx: true
   sourceType: module
 rules:
   indent:
@@ -18,3 +20,5 @@ rules:
   semi:
     - error
     - always
+plugin:
+  - react
