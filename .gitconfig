@@ -2,7 +2,8 @@
 	name = grv
 	email = andreasgrv@gmail.com
 [core]
-    excludesfile = ~/.gitignore
+	editor = vim
+    excludesfile = ~/.git-gitignore
 # stolen from http://githowto.com/aliases
 [alias]
 	pushall = push --recurse-submodules=on-demand

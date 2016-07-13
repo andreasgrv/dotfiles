@@ -1,0 +1,37 @@
+# compiled files
+
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# packages
+
+*.7z
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.egg-info
+
+# dev folders
+
+target
+build
+dist
+
+# vim
+
+*.swp
+
+# database files
+
+*.db
+
+# my notes
+
+*.note
