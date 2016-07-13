@@ -129,10 +129,6 @@ vmap <Up> [l
 vmap <Down> ]l
 
 set mouse=a
-if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
-endif
 map <ScrollWheelUp> 4<C-Y>
 map <ScrollWheelDown> 4<C-E>
 " -------------------- Text folding ------------------------------"
