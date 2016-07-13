@@ -281,7 +281,12 @@
     </keybind>
     <keybind key="C-A-t">
       <action name="Execute">
-        <command>lxterminal</command>
+        <command>lxterminal --geometry=110x30</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-q">
+      <action name="Execute">
+        <command>lxterminal --geometry=110x30 -e 'tmux -2'</command>
       </action>
     </keybind>
     <keybind key="C-A-w">
