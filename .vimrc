@@ -55,6 +55,7 @@ Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
