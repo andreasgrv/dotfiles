@@ -62,13 +62,6 @@ Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " ipython intergration
 " Plug 'ivanov/vim-ipython'
 
-" plug hack from junegunn to load ycm and ultisnips on insert
-augroup load_us_ycm
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
-augroup END
-
 call plug#end()
 
 filetype plugin indent on     " required!
