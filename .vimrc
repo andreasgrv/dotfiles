@@ -38,8 +38,8 @@ Plug 'mileszs/ack.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'christoomey/vim-tmux-navigator'
 " autocomplete + snippets
-Plug 'Valloric/YouCompleteMe', { 'on': [] , 'do': './install.py' }
-Plug 'sirver/ultisnips', { 'on': [] }
+Plug 'Valloric/YouCompleteMe'
+Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
 Plug 'scrooloose/syntastic'
@@ -51,6 +51,7 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
