@@ -8,11 +8,6 @@ case $- in
       *) return;;
 esac
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 # set PATH so it includes stuff from .local/bin (python stuff etc)
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
@@ -119,8 +114,6 @@ if ! shopt -oq posix; then
 fi
 
 [ -z "$TMUX" ] && export TERM="xterm-256color"
-# use vi
-set -o vi
 # alias vim='gvim -v'
 # unmap ctrl-s
 stty stop undef
@@ -128,22 +121,4 @@ stty stop undef
 # including this ensures that new gnome-terminal tabs keep the parent `pwd` !
 if [ -e /etc/profile.d/vte.sh ]; then
     . /etc/profile.d/vte.sh
-fi
-
-# if powerline is installed (must be installed as root), use powerline
-# else use powerline-shell which basically only need python to be installed
-# to install powerline run as root: pip install powerline-status
-if [ -f `which powerline-daemon` ]; then
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
-else
-    function _update_ps1() {
-    PS1="$(~/.powerline-shell.py --cwd-mode dironly $? 2> /dev/null)"
-    }
-
-    if [ "$TERM" != "linux" ]; then
-        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-    fi
 fi

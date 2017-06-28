@@ -15,4 +15,5 @@
 	type = cat-file -t
 	dump = cat-file -p
 	# stolen from http://fredkschott.com/post/2014/02/git-log-is-so-2005/ 
-	lg =	log --color --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	lg =	log --color --decorate --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	lgall = log --oneline --color --graph --decorate --all
