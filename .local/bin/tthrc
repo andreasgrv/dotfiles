@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "reconnecting to $1 ..."
+ssh "$1" -t .local/bin/tmux a

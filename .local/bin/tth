@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "tthing $1 ..."
+tokens=(${1//@/ })
+uname=${tokens[0]}
+hostname=${tokens[1]}
+if [[ "$uname" =~ "s"[0-9]{7} ]]
+then
+	ssh "$1" -t longjob -28day -nobackground -c .local/bin/tmux
+else
+	ssh "$1" -t tmux new
+fi
