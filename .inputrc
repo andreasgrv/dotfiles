@@ -2,3 +2,6 @@
 "\e[A":history-search-backward
 ## arrow down
 "\e[B":history-search-forward
+## set home and end key functionality
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
