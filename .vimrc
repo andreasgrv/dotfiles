@@ -21,23 +21,22 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-dispatch'
 " aesthetics
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " utils
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tomtom/tcomment_vim'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'christoomey/vim-tmux-navigator'
 " autocomplete + snippets
@@ -57,11 +56,10 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 " text and tex stuff
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " ipython intergration
 " Plug 'ivanov/vim-ipython'
@@ -247,18 +245,17 @@ autocmd FileType tex let g:surround_108 = "\\begin{\1environment: \1}\n\r\n\\end
 " support surrounding with tex command - eg \textbf{}
 autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
 
-autocmd FileType text, tex, markdown, mkd set background=light
-
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+autocmd FileType tex let g:vimtex_view_general_viewer = 'okular'
+autocmd FileType tex let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+autocmd FileType tex let g:vimtex_view_general_options_latexmk = '--unique'
+autocmd FileType tex let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+autocmd FileType tex let g:tex_conceal = ""
 
 if !exists('g:ycm_semantic_triggers')
 	let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-let g:tex_conceal = ""
 
+autocmd FileType text, tex, markdown, mkd set background=light
 
 "-------------------------- Java --------------------------"
 " change tabs to spaces for Java
@@ -296,12 +293,5 @@ autocmd QuickFixCmdPost * nested cwindow | redraw!
 
 " Vertical split colors and settings - 2015-08-05 00:04
 set fillchars+=vert:*
-" set fillchars+=stl:*
-" set fillchars+=stlnc:*
 " https://sookocheff.com/post/vim/italics/
 highlight Comment cterm=italic
-
-" Tmux stuff
-" change tmux window name according to active vim buffer
-autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window '" . expand("%:t") . "'")
-autocmd VimLeave * call system("tmux rename-window `basename $SHELL`")
