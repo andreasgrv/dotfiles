@@ -1,5 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
+" https://github.com/vim/vim/issues/993
+" set Vim-specific sequences for RGB colors
 
 " ----------------- PLUG SETTINGS -----------------------"
 
@@ -26,6 +28,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " utils
@@ -50,7 +53,7 @@ Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
 Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
@@ -58,7 +61,7 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 " text and tex stuff
-Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
 " ipython intergration
 " Plug 'ivanov/vim-ipython'
@@ -140,8 +143,13 @@ set softtabstop=4
 
 " ------------------- Colorscheme settings ------------------------"
 
-"colorscheme railscasts
-colorscheme jellybeans
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme gruvbox
+set background=dark
+let g:gruvbox_italic=1
+let g:gruvbox_improved_warnings=1
 
 " ------------------- General keybindings -------------------------------"
 
@@ -158,7 +166,7 @@ nnoremap <F8> :!/usr/bin/ctags -R<CR>
 set laststatus=2 "used for airline
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='understated'
+let g:airline_theme='gruvbox'
 
 " --------------------- Ctrlp settings ------------------------------"
 
@@ -238,8 +246,19 @@ autocmd FileType tex setlocal shiftwidth=2 tabstop=2 softtabstop=2 " keymap=gree
 autocmd FileType tex let g:surround_108 = "\\begin{\1environment: \1}\n\r\n\\end{\1\1}"
 " support surrounding with tex command - eg \textbf{}
 autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
-" use evince as previewer for tex
-autocmd FileType tex let g:livepreview_previewer = 'evince'
+
+autocmd FileType text, tex, markdown, mkd set background=light
+
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
+if !exists('g:ycm_semantic_triggers')
+	let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+let g:tex_conceal = ""
+
 
 "-------------------------- Java --------------------------"
 " change tabs to spaces for Java
@@ -267,20 +286,20 @@ autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
 "----------------------- Javascript -----------------------"
 autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+"
+"----------------------- JSX -----------------------"
+autocmd FileType javascript.jsx setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType javascript.jsx noremap <buffer> <leader>r :call JsBeautify()<cr>
 
 " Make options 
 autocmd QuickFixCmdPost * nested cwindow | redraw!
 
-" Stuff about how the window looks - 2015-08-05 00:04
-" The colors of the numbers - 2015-08-05 00:04
-highlight CursorLineNr term=bold ctermfg=Blue guifg=Blue
-highlight LineNr term=bold ctermfg=LightGray guifg=LightGray
 " Vertical split colors and settings - 2015-08-05 00:04
 set fillchars+=vert:*
-highlight VertSplit term=bold ctermfg=blue guifg=blue
-highlight WildMenu term=bold ctermfg=blue guifg=blue
 " set fillchars+=stl:*
 " set fillchars+=stlnc:*
+" https://sookocheff.com/post/vim/italics/
+highlight Comment cterm=italic
 
 " Tmux stuff
 " change tmux window name according to active vim buffer

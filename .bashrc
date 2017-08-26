@@ -10,7 +10,7 @@ esac
 
 # set PATH so it includes stuff from .local/bin (python stuff etc)
 if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
+    PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 fi
 export PATH
 
@@ -27,14 +27,11 @@ shopt -s histappend
 
 # Save and reload the history after each command finishes
 # be careful when running !1 with this
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# add git autocompletion
-source ~/.git-completion.sh
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -69,12 +66,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-	PS1='[\[\e[1;32m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h:\W\[\e[1;34m\]$(__git_ps1 " (%s)")\[\e[0m\]]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+PS1='`realpath . | rev | cut -d'/' -f 1,2 | rev`$ '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -113,7 +105,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -z "$TMUX" ] && export TERM="xterm-256color"
+export TERM="alacritty"
 # alias vim='gvim -v'
 # unmap ctrl-s
 stty stop undef
@@ -122,3 +114,6 @@ stty stop undef
 if [ -e /etc/profile.d/vte.sh ]; then
     . /etc/profile.d/vte.sh
 fi
+
+export LC_ALL=en_GB.UTF-8  
+export LANG=en_GB.UTF-8
