@@ -25,13 +25,9 @@ HISTFILESIZE=40000
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Save and reload the history after each command finishes
-# be careful when running !1 with this
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -45,15 +41,10 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -65,8 +56,6 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
-
-PS1='`realpath . | rev | cut -d'/' -f 1,2 | rev`$ '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -105,15 +94,57 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export TERM="alacritty"
-# alias vim='gvim -v'
-# unmap ctrl-s
-stty stop undef
+# default bg,fg
+df='\[\e[49m\e[39m\]'
+# black-fg white-bg
+bf='\[\e[38;5;234m\e[48;5;252m\]'
+# black-bg white-fg
+bb='\[\e[48;5;234m\e[38;5;252m\]'
+two_par_folders='`pwd | rev | cut -d'/' -f 1,2 | rev`'
 
-# including this ensures that new gnome-terminal tabs keep the parent `pwd` !
-if [ -e /etc/profile.d/vte.sh ]; then
-    . /etc/profile.d/vte.sh
-fi
+function prompt_command {
+	# Set PS1 with path truncated to two folders
+	path_section="$bf  $two_par_folders$bb$df "
+	# Git stuff
+	git_untracked=`git status --untracked-files=no --porcelain ${pwd} 2>/dev/null`
+	if [[ $? == 0 ]]
+	then
+		branch=`git branch | grep '^* ' | cut -d ' ' -f 2` 
+		if [[ -z "${branch// }" ]]
+		then
+			branch_sec=" new repo "
+		else
+			branch_sec=" $branch "
+		fi
+		num_modified=`echo "$git_untracked" | grep ' M ' | wc -l`
+		if [[ $num_modified != 0 ]]
+		then
+			mod_sec="$num_modified  "
+		else
+			mod_sec=""
+		fi
+		num_add=`echo "$git_untracked" | grep '^M ' | wc -l`
+		if [[ $num_add != 0 ]]
+		then
+			add_sec="$num_add  "
+		else
+			add_sec=""
+		fi
+		num_stash=`git stash list | wc -l`
+		if [[ $num_stash != 0 ]]
+		then
+			stash_sec="$num_stash  "
+		else
+			stash_sec=""
+		fi
+		export PS1="$bf $branch_sec$mod_sec$add_sec$stash_sec$path_section"
+	else
+		export PS1="$path_section"
+	fi
+}
+
+export PROMPT_COMMAND=prompt_command
 
 export LC_ALL=en_GB.UTF-8  
 export LANG=en_GB.UTF-8
+export TERM="xterm-256color"

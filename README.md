@@ -8,6 +8,11 @@ Fantasque Sans Mono + Nerdfonts
 * original-font: https://github.com/belluzj/fantasque-sans
 * patched font for powerline: https://github.com/ryanoasis/nerd-fonts
 
+#### Terminal prompt ideas (Powerline)
+
+* https://github.com/powerline/powerline
+* https://github.com/banga/powerline-shell
+
 #### Vim
 
 See .vimrc plugins (constantly changing)
