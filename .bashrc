@@ -96,10 +96,16 @@ fi
 
 # default bg,fg
 df='\[\e[49m\e[39m\]'
+
+# choose host color based on hash of hostname
+# we shift to range (17, 230) to avoid dark colours
+HOST_COLOUR=$((`hostname | cksum | cut -d ' ' -f 1` % 203 + 17))
 # black-fg white-bg
-bf='\[\e[38;5;234m\e[48;5;252m\]'
-# black-bg white-fg
-bb='\[\e[48;5;234m\e[38;5;252m\]'
+bf="\[\e[38;5;234m\e[48;5;${HOST_COLOUR}m\]"
+
+# black-bg host_colour-fg
+bb="\[\e[48;5;234m\e[38;5;${HOST_COLOUR}m\]"
+
 two_par_folders='`pwd | rev | cut -d'/' -f 1,2 | rev`'
 
 function prompt_command {
@@ -144,7 +150,7 @@ function prompt_command {
 }
 
 export PROMPT_COMMAND=prompt_command
-
+export HOST_COLOUR
 export LC_ALL=en_GB.UTF-8  
 export LANG=en_GB.UTF-8
 export TERM="xterm-256color"
