@@ -117,28 +117,28 @@ function prompt_command {
 	git_untracked=`git status --untracked-files=no --porcelain ${pwd} 2>/dev/null`
 	if [[ $? == 0 ]]
 	then
-		branch=`git branch | grep '^* ' | cut -d ' ' -f 2` 
+		branch=`git branch ${pwd} | grep '^* ' | cut -d ' ' -f 2` 
 		if [[ -z "${branch// }" ]]
 		then
 			branch_sec=" new repo "
 		else
 			branch_sec=" $branch "
 		fi
-		num_modified=`echo "$git_untracked" | grep ' M ' | wc -l`
+		num_modified=`echo "$git_untracked" | grep '[ M]M ' | wc -l`
 		if [[ $num_modified != 0 ]]
 		then
 			mod_sec="$num_modified  "
 		else
 			mod_sec=""
 		fi
-		num_add=`echo "$git_untracked" | grep '^M ' | wc -l`
+		num_add=`echo "$git_untracked" | grep '^M[ M] ' | wc -l`
 		if [[ $num_add != 0 ]]
 		then
 			add_sec="$num_add  "
 		else
 			add_sec=""
 		fi
-		num_stash=`git stash list | wc -l`
+		num_stash=`git stash list ${pwd} | wc -l`
 		if [[ $num_stash != 0 ]]
 		then
 			stash_sec="$num_stash  "
