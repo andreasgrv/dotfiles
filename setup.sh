@@ -13,7 +13,7 @@ dirs=$(find . -path  '*/*' -type d | \
 
 # files we want to setup
 files=$(find . -path  '*/*' -type f | \
-	    grep -v -e '^./.git' -e '^./.\?setup' -e './README.md' | \
+	    grep -v -e '^./.git/' -e '^./.\?setup' -e './README.md' | \
 	   	cut -c 3-)
 
 echo -e "This setup script works by making symbolic links\n\n\t$HERE -> $HOME\n"
