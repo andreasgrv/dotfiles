@@ -1,4 +1,13 @@
 #!/bin/bash
 
 echo "reconnecting to $1 ..."
-ssh "$1" -t .local/bin/tmux a
+tokens=(${1//@/ })
+uname=${tokens[0]}
+hostname=${tokens[1]}
+if [[ "$uname" =~ "s"[0-9]{7} ]]
+then
+	tmux rename-window $hostname
+	ssh -tt uni ssh -tt "$hostname" -t .local/bin/tmux a
+else
+	ssh "$1" -t tmux a
+fi
