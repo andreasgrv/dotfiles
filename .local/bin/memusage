@@ -1,2 +1,2 @@
 #!/bin/bash
-echo `free --mega | tail -n 2 | head -n 1 | awk '{printf "%d/%dMB",$2-$7,$2}'`
+echo `free --mega | head -n 2 | tail -n 1 | awk '{printf "%d/%dMB",$2-$7,$2}'`

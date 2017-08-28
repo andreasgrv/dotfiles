@@ -6,7 +6,7 @@ uname=${tokens[0]}
 hostname=${tokens[1]}
 if [[ "$uname" =~ "s"[0-9]{7} ]]
 then
-	ssh -tt uni ssh -tt "$hostname" nice -n 19 .bin/run_env
+	ssh -tt uni ssh -tt "$hostname" nice -n 19 bash -ic .bin/run_env
 else
-	ssh "$1" -t bash -i -c 'tmux new'
+	ssh "$1" -t bash -ic 'tmux new'
 fi
