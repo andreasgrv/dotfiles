@@ -89,6 +89,15 @@ do
 	fi
 done
 
+# tmux
+if [ ! -e "$HOME/.tmux/plugins/tpm" ]
+then
+	echo -e '## Installing tmux plugin manager\n'
+	git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
+fi
+
+# vim
+
 echo -e '## Building font cache\n'
 fc-cache -fr
 echo -e 'Done!\n'
