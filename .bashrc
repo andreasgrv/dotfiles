@@ -99,7 +99,7 @@ df='\[\e[49m\e[39m\]'
 
 # choose host color based on hash of hostname
 # we cherrypick a basic palette of reasonable colours
-cherrypkd_colors=(255 111 113 221 210 183 42 248 130)
+cherrypkd_colors=(253 111 113 210 183 42 248 130)
 colour_index=$((`hostname | cksum | cut -d ' ' -f 1` % ${#cherrypkd_colors[@]}))
 HOST_COLOUR=${cherrypkd_colors[colour_index]}
 # black-fg white-bg
