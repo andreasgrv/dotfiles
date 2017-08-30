@@ -10,3 +10,4 @@
 "\em": "ls -lSh \015"
 "\ev": "`xclip -o`"
 "\ec": " | xclip"
+"\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux; else tmux attach; fi\015"

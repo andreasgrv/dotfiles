@@ -34,7 +34,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'tomtom/tcomment_vim'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
 Plug 'jmcantrell/vim-virtualenv'
@@ -296,3 +296,13 @@ autocmd QuickFixCmdPost * nested cwindow | redraw!
 set fillchars+=vert:*
 " https://sookocheff.com/post/vim/italics/
 highlight Comment cterm=italic
+
+" Make changing modes snappy
+" See (https://www.reddit.com/r/vim/comments/2391u5/delay_while_using_esc_to_exit_insert_mode/)
+" Also note that running vim in tmux can have the same effect
+" use 'set -s escape-time 0' in tmux.conf
+augroup FastEscape
+	autocmd!
+	au InsertEnter * set timeoutlen=0
+	au InsertLeave * set timeoutlen=1000
+augroup END
