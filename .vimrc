@@ -127,6 +127,9 @@ vmap <Down> ]l
 set mouse=a
 map <ScrollWheelUp> 4<C-Y>
 map <ScrollWheelDown> 4<C-E>
+
+" I have never used ex mode for the time being..
+nnoremap Q <Nop>
 " -------------------- Text folding ------------------------------"
 
 set foldmethod=indent
