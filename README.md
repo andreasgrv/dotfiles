@@ -8,7 +8,7 @@ The prompt colour is set depending on the hash of the hostname, therefore differ
 will have different prompt colours (given there is no collision).
 
 In white is the local tmux session while the green and reddish prompts are for ssh connections
-to different machines. The bottom left pane is how vim looks modifying a bash script
+to different machines. The bottom left pane is how vim looks when modifying a bash script
 (gruvbox colorscheme).
 
 ### Credits

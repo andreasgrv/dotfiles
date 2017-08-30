@@ -10,6 +10,9 @@
 	co = checkout
 	ci = commit
 	st = status
+	sl = stash list
+	sd = stash drop
+	sp = stash pop
 	br = branch
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	type = cat-file -t
