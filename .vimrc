@@ -299,6 +299,7 @@ highlight Comment cterm=italic
 
 " Make changing modes snappy
 " See (https://www.reddit.com/r/vim/comments/2391u5/delay_while_using_esc_to_exit_insert_mode/)
+" and https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 " Also note that running vim in tmux can have the same effect
 " use 'set -s escape-time 0' in tmux.conf
 augroup FastEscape

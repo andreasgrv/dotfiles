@@ -131,12 +131,19 @@ function prompt_command {
 		else
 			mod_sec=""
 		fi
-		num_add=`echo "$git_untracked" | grep '^M[ M] ' | wc -l`
+		num_add=`echo "$git_untracked" | grep '^[MA][ MA] ' | wc -l`
 		if [[ $num_add != 0 ]]
 		then
 			add_sec="$num_add  "
 		else
 			add_sec=""
+		fi
+		num_del=`echo "$git_untracked" | grep '^D[ D] ' | wc -l`
+		if [[ $num_del != 0 ]]
+		then
+			del_sec="$num_del  "
+		else
+			del_sec=""
 		fi
 		num_stash=`git stash list ${pwd} | wc -l`
 		if [[ $num_stash != 0 ]]
@@ -145,7 +152,7 @@ function prompt_command {
 		else
 			stash_sec=""
 		fi
-		export PS1="$bf $branch_sec$mod_sec$add_sec$stash_sec$path_section"
+		export PS1="$bf $branch_sec$mod_sec$add_sec$del_sec$stash_sec$path_section"
 	else
 		export PS1="$path_section"
 	fi
