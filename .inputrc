@@ -6,7 +6,7 @@
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
-"\el": "ls -lth \015"
+"\e.": "ls -lth \015"
 "\em": "ls -lSh \015"
 "\ev": "`xclip -o`"
 "\ec": " | xclip"

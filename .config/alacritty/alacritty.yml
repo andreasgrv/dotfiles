@@ -185,8 +185,7 @@ background_opacity: 1.0
 key_bindings:
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: Q,        mods: Command, action: Quit                         }
-  - { key: W,        mods: Command, action: Quit                         }
+  - { key: D,    mods: Alt,       action: Quit                           }
   - { key: Insert,   mods: Shift,   action: PasteSelection               }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
@@ -235,6 +234,15 @@ key_bindings:
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
+  - { key: H,        mods: Super,   chars: "\x1b[1;5P"                   }
+  - { key: J,        mods: Super,   chars: "\x1b[1;5Q"                   }
+  - { key: K,        mods: Super,   chars: "\x1b[1;5R"                   }
+  - { key: L,        mods: Super,   chars: "\x1b[1;5S"                   }
+  - { key: H,   mods: Super|Shift,  chars: "\x1b[1;2P"                   }
+  - { key: J,   mods: Super|Shift,  chars: "\x1b[1;2Q"                   }
+  - { key: K,   mods: Super|Shift,  chars: "\x1b[1;2R"                   }
+  - { key: L,   mods: Super|Shift,  chars: "\x1b[1;2S"                   }
+  - { key: Q,   mods: Super,        chars: "\x11"                          }
 
 # Mouse bindings
 #
