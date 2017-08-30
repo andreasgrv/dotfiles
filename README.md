@@ -1,5 +1,16 @@
 ## My dotfiles
 
+## Screenshot of tmux layout
+
+![Screenshot of tmux layout](screenshot.png)
+
+The prompt colour is set depending on the hash of the hostname, therefore different ssh connections
+will have different prompt colours (given there is no collision).
+
+In white is the local tmux session while the green and reddish prompts are for ssh connections
+to different machines. The bottom left pane is how vim looks modifying a bash script
+(gruvbox colorscheme).
+
 ### Credits
 
 #### Fonts
