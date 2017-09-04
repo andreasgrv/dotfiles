@@ -54,13 +54,13 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
 Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-Plug 'maksimr/vim-jsbeautify', { 'for': ['html*', 'css', 'javascript'] }
+Plug 'maksimr/vim-jsbeautify', { 'for': ['html*','css','javascript'] }
 Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss','sass'] }
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': ['tex'] }
-Plug 'reedes/vim-pencil', { 'for': ['tex', 'text', 'mkd', 'markdown'] }
+Plug 'reedes/vim-pencil', { 'for': ['tex','text','mkd','markdown'] }
 " ipython intergration
 " Plug 'ivanov/vim-ipython'
 
@@ -212,6 +212,10 @@ let g:UltiSnipsExpandTrigger="<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-l>"
 let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 
+if !exists('g:ycm_semantic_triggers')
+	let g:ycm_semantic_triggers = {}
+endif
+
 " ------------------- Pencil settings ----------------------------"
 
 " configured pencil - added by grv - Sat, 08 Aug 2015 16:20:35
@@ -219,78 +223,99 @@ let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-  autocmd FileType tex          call pencil#init()
+  autocmd FileType markdown,mkd,text,tex call pencil#init()
+augroup END
+
+augroup LightTextMode
+	autocmd!
+	autocmd FileType text,tex,markdown,mkd set background=light
 augroup END
 
 "------------------- Filetype Specifics --------------------------"
 
 "-------------------------- Python --------------------------"
-" change tabs to spaces for python
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
-" easy print using surround with char p
-autocmd FileType python let g:surround_112 = "print(\r)"
+augroup Python
+	autocmd!
+	" change tabs to spaces for python
+	autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+	" easy print using surround with char p
+	autocmd FileType python let g:surround_112 = "print(\r)"
+augroup END
 
 "-------------------------- C++ --------------------------"
-" change tabs to spaces for C++
-autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
-" easy print using surround with char p
-autocmd FileType cpp let g:surround_112 = "std::cout<<\r<<std::endl;"
+augroup Cpp
+	autocmd!
+	" change tabs to spaces for C++
+	autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+	" easy print using surround with char p
+	autocmd FileType cpp let g:surround_112 = "std::cout<<\r<<std::endl;"
+	" Make options 
+	autocmd QuickFixCmdPost * nested cwindow | redraw!
+augroup END
 
 "-------------------------- TeX --------------------------"
-" smaller indentation for tex. we also want greek support
-autocmd FileType tex setlocal shiftwidth=2 tabstop=2 softtabstop=2 " keymap=greek_utf-8
-" support surrounding with tex environments
-autocmd FileType tex let g:surround_108 = "\\begin{\1environment: \1}\n\r\n\\end{\1\1}"
-" support surrounding with tex command - eg \textbf{}
-autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
+augroup TeX
+	autocmd!
+	" smaller indentation for tex. we also want greek support
+	autocmd FileType tex setlocal shiftwidth=2 tabstop=2 softtabstop=2 " keymap=greek_utf-8
+	" support surrounding with tex environments
+	autocmd FileType tex let g:surround_108 = "\\begin{\1environment: \1}\n\r\n\\end{\1\1}"
+	" support surrounding with tex command - eg \textbf{}
+	autocmd FileType tex let g:surround_112 = "\\\1environment: \1{\r}"
 
-autocmd FileType tex let g:vimtex_view_general_viewer = 'okular'
-autocmd FileType tex let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-autocmd FileType tex let g:vimtex_view_general_options_latexmk = '--unique'
-autocmd FileType tex let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-autocmd FileType tex let g:tex_conceal = ""
-
-if !exists('g:ycm_semantic_triggers')
-	let g:ycm_semantic_triggers = {}
-endif
-
-autocmd FileType text, tex, markdown, mkd set background=light
+	autocmd FileType tex let g:vimtex_view_general_viewer = 'okular'
+	autocmd FileType tex let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+	autocmd FileType tex let g:vimtex_view_general_options_latexmk = '--unique'
+	autocmd FileType tex let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+	autocmd FileType tex let g:tex_conceal = ""
+augroup END
 
 "-------------------------- Java --------------------------"
-" change tabs to spaces for Java
-autocmd FileType java setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
-" easy print using surround with char p
-autocmd FileType java let g:surround_112 = "System.out.println(\r);"
-
+augroup Java
+	autocmd!
+	" change tabs to spaces for Java
+	autocmd FileType java setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
+	" easy print using surround with char p
+	autocmd FileType java let g:surround_112 = "System.out.println(\r);"
+augroup END
 "-------------------------- Yaml --------------------------"
 " support yaml syntax using ansible
-autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
-autocmd FileType yaml set ft=ansible
+augroup Yaml
+	autocmd!
+	autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+	autocmd FileType yaml set ft=ansible
+augroup END
 
 "-------------------------- JSON --------------------------"
-autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-
+augroup JSON
+	autocmd!
+	autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
 "-------------------------- HTML --------------------------"
-" smaller indentation for html
-autocmd FileType xml,html,htmldjango,htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType xml,html,htmldjango,htmljinja noremap <buffer> <leader>r :call HtmlBeautify()<cr>
-
+augroup HTML
+	autocmd!
+	" smaller indentation for html
+	autocmd FileType xml,html,htmldjango,htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+	autocmd FileType xml,html,htmldjango,htmljinja noremap <buffer> <leader>r :call HtmlBeautify()<cr>
+augroup END
 "-------------------------- CSS ---------------------------"
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
-
+augroup CSS
+	autocmd!
+	autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
+augroup END
 "----------------------- Javascript -----------------------"
-autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
-"
+augroup Javascript
+	autocmd!
+	autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd FileType javascript noremap <buffer> <leader>r :call JsBeautify()<cr>
+augroup END
 "----------------------- JSX -----------------------"
-autocmd FileType javascript.jsx setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType javascript.jsx noremap <buffer> <leader>r :call JsBeautify()<cr>
-
-" Make options 
-autocmd QuickFixCmdPost * nested cwindow | redraw!
+augroup JSX
+	autocmd!
+	autocmd FileType javascript.jsx setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd FileType javascript.jsx noremap <buffer> <leader>r :call JsBeautify()<cr>
+augroup END
 
 " Vertical split colors and settings - 2015-08-05 00:04
 set fillchars+=vert:*
