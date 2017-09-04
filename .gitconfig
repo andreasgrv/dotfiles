@@ -4,6 +4,8 @@
 [core]
 	editor = vim
     excludesfile = ~/.git-gitignore
+[push]
+	followTags = true
 # stolen from http://githowto.com/aliases
 [alias]
 	pushall = push --recurse-submodules=on-demand
