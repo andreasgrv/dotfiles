@@ -57,18 +57,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color'
-    #alias dir='dir --color'
-    #alias vdir='vdir --color'
-
-    alias grep='grep --color'
-    alias fgrep='fgrep --color'
-    alias egrep='egrep --color'
-fi
-
 # some more ls aliases
 #alias ll='ls -l'
 #alias la='ls -A'

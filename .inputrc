@@ -11,3 +11,9 @@
 "\ev": "`xclip -o`"
 "\ec": " | xclip"
 "\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux; else tmux attach; fi\015"
+"\eo": " > out"
+
+set colored-stats on
+set colored-completion-prefix on
+set skip-completed-text on
+set show-all-if-ambiguous on

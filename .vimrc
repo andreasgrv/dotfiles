@@ -220,6 +220,7 @@ endif
 
 " configured pencil - added by grv - Sat, 08 Aug 2015 16:20:35
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#textwidth = 79
 
 augroup pencil
   autocmd!
