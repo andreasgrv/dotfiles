@@ -93,42 +93,51 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# default bg,fg
-df='\[\e[49m\e[39m\]'
+# set default background
+db='\[\e[49m\]'
+# set default foreground
+df='\[\e[39m\]'
 
 # choose host color based on hash of hostname
 # we cherrypick a basic palette of reasonable colours
-cherrypkd_colors=(253 111 113 210 183 42 248 130)
+cherrypkd_colors=(7 113 183 42 248 130)
 colour_index=$((`hostname | cksum | cut -d ' ' -f 1` % ${#cherrypkd_colors[@]}))
 HOST_COLOUR=${cherrypkd_colors[colour_index]}
+OTHER_COLOUR=234
 # black-fg white-bg
-bf="\[\e[38;5;234m\e[48;5;${HOST_COLOUR}m\]"
+bf="\[\e[38;5;${OTHER_COLOUR}m\e[48;5;${HOST_COLOUR}m\]"
 
 # black-bg host_colour-fg
-bb="\[\e[48;5;234m\e[38;5;${HOST_COLOUR}m\]"
-blue="\[\e[38;5;111m\]"
+bb="\[\e[48;5;${OTHER_COLOUR}m\e[38;5;${HOST_COLOUR}m\]"
+blue="\[\e[38;5;32m\]"
 red="\[\e[38;5;210m\]"
+purple="\[\e[38;5;129m\]"
+orange="\[\e[38;5;202m\]"
+yellow="\[\e[38;5;220m\]"
+maroon="\[\e[38;5;52m\]"
+green="\[\e[38;5;28m\]"
 
-two_par_folders='`pwd | rev | cut -d'/' -f 1,2 | rev`'
+# Separator used
+sep=""
 
 function prompt_command {
+	two_par_folders="$(pwd | rev | cut -d'/' -f 1,2 | rev)"
 	# append each command to the history
 	history -a
+	# build the prompt from parts
+	prompt_parts=()
 	# Virtual environment info
 	if [[ "$VIRTUAL_ENV" != "" ]]
 	then
 		venv_path=$(dirname $VIRTUAL_ENV)
 		if [[ "$PWD" == "$venv_path"* ]]
 		then
-			venv_section="$bf $blue  $bf"
+			venv_section="$blue"
 		else
-			venv_section="$bf $red  $bf"
+			venv_section="$yellow"
 		fi
-	else
-		venv_section=""
+		prompt_parts+=("$venv_section")
 	fi
-	# Set PS1 with path truncated to two folders
-	path_section="$bf  $two_par_folders$bb$df "
 	# Git stuff
 	git_untracked=`git status --untracked-files=no --porcelain ${pwd} 2>/dev/null`
 	if [[ $? == 0 ]]
@@ -143,36 +152,64 @@ function prompt_command {
 		num_modified=`echo "$git_untracked" | grep '[ M]M ' | wc -l`
 		if [[ $num_modified != 0 ]]
 		then
-			mod_sec="$num_modified  "
+			mod_sec="$orange$num_modified  $df"
 		else
 			mod_sec=""
 		fi
-		num_add=`echo "$git_untracked" | grep '^[MA][ MA] ' | wc -l`
+		num_add=`echo "$git_untracked" | grep '^M ' | wc -l`
 		if [[ $num_add != 0 ]]
 		then
-			add_sec="$num_add  "
+			add_sec="$green$num_add  $df"
 		else
 			add_sec=""
 		fi
 		num_del=`echo "$git_untracked" | grep '^D[ D] ' | wc -l`
 		if [[ $num_del != 0 ]]
 		then
-			del_sec="$num_del  "
+			del_sec="$red$num_del  $df"
 		else
 			del_sec=""
 		fi
 		num_stash=`git stash list ${pwd} | wc -l`
 		if [[ $num_stash != 0 ]]
 		then
-			stash_sec="$num_stash  "
+			stash_sec="$maroon$num_stash  $df"
 		else
 			stash_sec=""
 		fi
-		PS1="$bf $branch_sec$mod_sec$add_sec$del_sec$stash_sec$path_section"
-	else
-		PS1="$path_section"
+		git_section="$branch_sec$mod_sec$add_sec$del_sec$stash_sec"
+		prompt_parts+=("$git_section")
 	fi
-	export PS1="$venv_section$PS1"
+	# Set PS1 with path truncated to two folders
+	path_section="  $two_par_folders"
+
+	prompt_parts+=("$path_section")
+
+	counter=0
+	PS1=""
+	num_prompts=${#prompt_parts[@]}
+	for part in "${prompt_parts[@]}"
+	do
+		counter=$((counter + 1))
+		modulo=$(($counter % 2 ))
+		if [[ $modulo == 0 ]]
+		then
+			if [[ $counter == $num_prompts ]]
+			then
+				PS1="$PS1$bf $part $bb$db$sep $df "
+			else
+				PS1="$PS1$bf $part $bb$sep "
+			fi
+		else
+			if [[ $counter == $num_prompts ]]
+			then
+				PS1="$PS1$bb $part $bf$db$sep $df "
+			else
+				PS1="$PS1$bb $part $bf$sep "
+			fi
+		fi
+	done
+	export PS1
 }
 
 export PROMPT_COMMAND=prompt_command
