@@ -1,6 +1,8 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# check https://github.com/mrzool/bash-sensible/blob/master/sensible.bash
+# for some sensible defaults
 
 # If not running interactively, don't do anything
 case $- in
@@ -15,19 +17,28 @@ fi
 export PATH
 
 # don't put duplicate lines or lines starting with space in the history.
+# Automatically trim long paths in the prompt (requires Bash 4.x)
+PROMPT_DIRTRIM=2
+
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=20000
-HISTFILESIZE=40000
+HISTSIZE=500000
+HISTFILESIZE=100000
+
+# Avoid duplicate entries
+HISTCONTROL="erasedups:ignoreboth"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Save multi-line commands as one command
+shopt -s cmdhist
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-# shopt -s checkwinsize
+shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -95,10 +106,27 @@ bf="\[\e[38;5;234m\e[48;5;${HOST_COLOUR}m\]"
 
 # black-bg host_colour-fg
 bb="\[\e[48;5;234m\e[38;5;${HOST_COLOUR}m\]"
+blue="\[\e[38;5;111m\]"
+red="\[\e[38;5;210m\]"
 
 two_par_folders='`pwd | rev | cut -d'/' -f 1,2 | rev`'
 
 function prompt_command {
+	# append each command to the history
+	history -a
+	# Virtual environment info
+	if [[ "$VIRTUAL_ENV" != "" ]]
+	then
+		venv_path=$(dirname $VIRTUAL_ENV)
+		if [[ "$PWD" == "$venv_path"* ]]
+		then
+			venv_section="$bf $blue  $bf"
+		else
+			venv_section="$bf $red  $bf"
+		fi
+	else
+		venv_section=""
+	fi
 	# Set PS1 with path truncated to two folders
 	path_section="$bf  $two_par_folders$bb$df "
 	# Git stuff
@@ -140,10 +168,11 @@ function prompt_command {
 		else
 			stash_sec=""
 		fi
-		export PS1="$bf $branch_sec$mod_sec$add_sec$del_sec$stash_sec$path_section"
+		PS1="$bf $branch_sec$mod_sec$add_sec$del_sec$stash_sec$path_section"
 	else
-		export PS1="$path_section"
+		PS1="$path_section"
 	fi
+	export PS1="$venv_section$PS1"
 }
 
 export PROMPT_COMMAND=prompt_command
