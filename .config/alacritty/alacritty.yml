@@ -16,14 +16,14 @@ env:
 
 # Window dimensions in character columns and lines
 # (changes require restart)
-dimensions:
+window.dimensions:
   columns: 120
   lines: 40
 
 # Adds this many blank pixels of padding around the window
 # Units are physical pixels; this is not DPI aware.
 # (change requires restart)
-padding:
+window.padding:
   x: 0
   y: 0
 
@@ -70,17 +70,12 @@ font:
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
-  scale_with_dpi: true
 
 # Should display the render timer
 render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
 
 # Colors (Pencil Dark)
 colors:
@@ -132,11 +127,12 @@ colors:
 # To completely disable the visual bell, set its duration to 0.
 #
 visual_bell:
-  animation: Ease
+  animation: EaseOut
   duration: 0
+  color: '0x111133'
 
 # Background opacity
-background_opacity: 0.9
+background_opacity: 0.85
 
 # Key bindings
 #
@@ -263,8 +259,6 @@ mouse:
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
-hide_cursor_when_typing: false
-
 # Shell
 #
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
@@ -273,3 +267,26 @@ hide_cursor_when_typing: false
 #  program: /bin/bash
 #  args:
 #    - --login
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 0
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 3
+
+  # Faux Scrolling
+  #
+  # The `faux_multiplier` setting controls the number of lines the terminal
+  # should scroll when the alternate screen buffer is active. This is used
+  # to allow mouse scrolling for applications like `man`.
+  #
+  # Specifying `0` will disable faux scrolling.
+  faux_multiplier: 3
+
+  # Scroll to the bottom when new text is written to the terminal.
+  auto_scroll: false
+
+dynamic_title: true
