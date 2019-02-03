@@ -40,7 +40,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'christoomey/vim-tmux-navigator'
 " autocomplete + snippets
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
