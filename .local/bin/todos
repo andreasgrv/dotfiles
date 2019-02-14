@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FNAME=`date +"%Y-%m-%d-%a.txt"`
+
+if [ ! -f $FNAME ]
+then
+	(>&2 echo "No entries for today!")
+else
+	grep -e "\[ \] \?" $FNAME
+fi
