@@ -12,7 +12,9 @@ esac
 
 # set PATH so it includes stuff from .local/bin (python stuff etc)
 if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+	if [[ $PATH != *".local/bin"* ]]; then
+		PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+	fi
 fi
 export PATH
 
@@ -93,17 +95,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# set default background
+# default bg,fg
 db='\[\e[49m\]'
-# set default foreground
 df='\[\e[39m\]'
 
 # choose host color based on hash of hostname
 # we cherrypick a basic palette of reasonable colours
-cherrypkd_colors=(7 113 183 42 248 130)
+cherrypkd_colors=(7 75 113 183 42 248 130)
 colour_index=$((`hostname | cksum | cut -d ' ' -f 1` % ${#cherrypkd_colors[@]}))
 HOST_COLOUR=${cherrypkd_colors[colour_index]}
-OTHER_COLOUR=234
+# HOST_COLOUR=75
+OTHER_COLOUR=236
 # black-fg white-bg
 bf="\[\e[38;5;${OTHER_COLOUR}m\e[48;5;${HOST_COLOUR}m\]"
 
@@ -112,10 +114,10 @@ bb="\[\e[48;5;${OTHER_COLOUR}m\e[38;5;${HOST_COLOUR}m\]"
 blue="\[\e[38;5;32m\]"
 red="\[\e[38;5;210m\]"
 purple="\[\e[38;5;129m\]"
-orange="\[\e[38;5;202m\]"
+orange="\[\e[38;5;214m\]"
 yellow="\[\e[38;5;220m\]"
 maroon="\[\e[38;5;52m\]"
-green="\[\e[38;5;28m\]"
+green="\[\e[38;5;34m\]"
 
 # Separator used
 sep=""
@@ -217,3 +219,5 @@ export HOST_COLOUR
 export LC_ALL=en_GB.UTF-8  
 export LANG=en_GB.UTF-8
 export TERM="xterm-256color"
+export CUDA_PATH=/usr/local/cuda-10.0
+export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH

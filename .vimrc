@@ -227,10 +227,6 @@ augroup pencil
   autocmd FileType markdown,mkd,text,tex call pencil#init()
 augroup END
 
-augroup LightTextMode
-	autocmd!
-	autocmd FileType text,tex,markdown,mkd set background=light
-augroup END
 
 "------------------- Filetype Specifics --------------------------"
 
