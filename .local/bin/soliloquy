@@ -39,7 +39,7 @@ then
 	echo "$TEMPLATE" > $FNAME
 	find_last_entry
 	# If the variable is set from the function
-	if [ -f $PREV_FOUND ]
+	if [[ $PREV_FOUND ]]
 	then
 		# Append all the todos not completed to next entry
 		lines_to_add=$(grep -e "\[ \] \?" $PREV_FOUND)
