@@ -20,9 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 " aesthetics
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -31,13 +29,13 @@ Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " utils
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'tomtom/tcomment_vim'
 " Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
-Plug 'jmcantrell/vim-virtualenv'
+" Plug 'jmcantrell/vim-virtualenv'
 Plug 'christoomey/vim-tmux-navigator'
 " autocomplete + snippets
 " Plug 'Valloric/YouCompleteMe'
@@ -46,18 +44,18 @@ Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular', { 'for': 'mkd' }
-Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
-Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
-Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
-Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-Plug 'maksimr/vim-jsbeautify', { 'for': ['html*','css','javascript'] }
-Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
+" Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
+ "Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
+" Plug 'othree/html5.vim', { 'for': 'html' }
+" Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'html'] }
+" Plug 'pangloss/vim-javascript', { 'for': ['html', 'javascript'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
+" Plug 'maksimr/vim-jsbeautify', { 'for': ['html*','css','javascript'] }
+" Plug 'tshirtman/vim-cython', { 'for': ['pyrex', 'cython']}
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss','sass'] }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss','sass'] }
 " text and tex stuff
 Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'reedes/vim-pencil', { 'for': ['tex','text','mkd','markdown'] }
@@ -144,7 +142,7 @@ set softtabstop=4
 
 " ------------------- Colorscheme settings ------------------------"
 
-set termguicolors
+" set termguicolors
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_italic=1
