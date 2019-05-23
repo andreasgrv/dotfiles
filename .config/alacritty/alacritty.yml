@@ -12,7 +12,7 @@ env:
   # Note that some xterm terminfo databases don't declare support for italics.
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
-  TERM: xterm-256color
+  TERM: xterm-256color-italic
 
 # Window dimensions in character columns and lines
 # (changes require restart)
@@ -66,9 +66,6 @@ font:
     x: 0
     y: 0
 
-
-# Should display the render timer
-render_timer: false
 
 # Colors (Pencil Dark)
 colors:
