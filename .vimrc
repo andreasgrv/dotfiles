@@ -79,8 +79,8 @@ let g:tex_flavor='latex'
 " show active line
 set cursorline
 " line numbering 
-set number " line numbering stuff
-set numberwidth=3 " how much width the column is at the beginning
+" set number " line numbering stuff
+" set numberwidth=3 " how much width the column is at the beginning
 " show 4 lines above and below
 set scrolloff=4
 " automatically read changes made outside vim if not changed in vim
