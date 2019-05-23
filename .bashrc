@@ -215,6 +215,7 @@ function prompt_command {
 			fi
 		fi
 	done
+	PS1="$PS1\n"
 	export PS1
 }
 
