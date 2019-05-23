@@ -4,6 +4,10 @@
 # check https://github.com/mrzool/bash-sensible/blob/master/sensible.bash
 # for some sensible defaults
 
+# Disable ctrl-s causing scroll lock
+# https://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator
+stty -ixon
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
