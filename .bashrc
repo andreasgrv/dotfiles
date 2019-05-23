@@ -223,6 +223,6 @@ export PROMPT_COMMAND=prompt_command
 export HOST_COLOUR
 export LC_ALL=en_GB.UTF-8  
 export LANG=en_GB.UTF-8
-export TERM="xterm-256color"
+export TERM="xterm-256color-italic"
 export CUDA_PATH=/usr/local/cuda-10.0
 export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH
