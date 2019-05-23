@@ -4,9 +4,9 @@ echo "tthing $1 ..."
 tokens=(${1//@/ })
 uname=${tokens[0]}
 hostname=${tokens[1]}
-if [[ "$uname" =~ "s"[0-9]{7} ]]
+if [[ "$uname" =~ "agr" ]]
 then
-	ssh -tt uni ssh -tt "$hostname" nice -n 19 bash -ic .bin/run_env
+	ssh -tt "$hostname" nice -n 19 bash -ic 'tmux new'
 else
 	ssh "$1" -X -t bash -ic 'tmux new'
 fi
