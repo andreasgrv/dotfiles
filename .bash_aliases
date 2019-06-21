@@ -13,3 +13,7 @@ fi
 #px pygmentize will syntax highlight the code
 # like cat - but better.
 alias dog='pygmentize'
+alias vim='vimx'
+# Quick vim - aka qim
+alias qim='vim -u NONE'
+alias py='~/.local/bin/python3.7'
