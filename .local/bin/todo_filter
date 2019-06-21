@@ -1,0 +1,34 @@
+#!/bin/python3
+# Filters what we care about
+import re
+import sys
+import argparse
+
+
+if __name__ == "__main__":
+    lines = []
+    parser = argparse.ArgumentParser(description='Soliloquy filterer')
+
+    parser.add_argument('--section', type=str, required=True,
+                        help='What section to keep')
+
+    args = parser.parse_args()
+
+    if args.section == 'conclusions':
+        regex = re.compile(r'Conclusion:\s+((^\t.*?\n+)+)', re.MULTILINE | re.DOTALL)
+    elif args.section == 'todos':
+        regex = re.compile(r'Goals for today:\s+((^\t.*?\n+)+)', re.MULTILINE | re.DOTALL)
+    elif args.section == 'papers':
+        regex = re.compile(r'Papers:\s+((^\t.*?\n+)+)', re.MULTILINE | re.DOTALL)
+    elif args.section == 'resources':
+        regex = re.compile(r'Resources:\s+((^\t.*?\n+)+)', re.MULTILINE | re.DOTALL)
+    elif args.section == 'thoughts':
+        regex = re.compile(r'Thoughts:\s+((^\t.*?\n+)+)', re.MULTILINE | re.DOTALL)
+    else:
+        raise AttributeError('Unknown section %s' % args.section)
+
+    for line in sys.stdin:
+        lines.append(line)
+    text = ''.join(lines)
+    for match in regex.findall(text):
+        print(match[0].rstrip())
