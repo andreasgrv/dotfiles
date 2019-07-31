@@ -53,5 +53,5 @@ then
 	fi
 	printf "Entry created: %s\n" $FNAME
 else
-	(>&2 echo "Todays entry already exists!")
+	(>&2 echo "Today's entry already exists!")
 fi

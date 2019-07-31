@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Assumes this is run from the directory you have diary entries in.
+
+if [[ $1 ]]
+then
+	leading=${1:0:1}
+	if [[ $leading != "-" ]]
+	then
+		echo "Unknown parameter $1 - expected: -n, where n is the number of days"
+		echo "For example:"
+		echo "yesterday -1"
+		exit
+	fi
+	offset=${1:1}
+else
+	offset=0
+fi
+
+MEMORY=100
+
+function find_last_entry {
+	# Find the first entry before the current one
+
+	found=0
+
+	for i in $(seq 1 $MEMORY)
+	do
+		prev_fname=$(date --date="$i day ago" +"%Y-%m-%d-%a.txt")
+		if [ -f $prev_fname ]
+		then
+			if [ $offset == $found ]
+			then
+				printf "%d entries ago was %d day(s) ago.\n" $((offset + 1)) $i
+				found_date=$(date --date="$i day ago")
+				printf "\n==========$found_date=========\n\n"
+				PREV_FOUND=$prev_fname
+				break
+			else
+				found=$((found + 1))
+			fi
+		fi
+	done
+}
+
+FNAME=`date +"%Y-%m-%d-%a.txt"`
+
+find_last_entry
+# If the variable is set from the function
+if [[ $PREV_FOUND ]]
+then
+	cat $PREV_FOUND
+else
+	(>&2 echo "No previous entry found!")
+fi
