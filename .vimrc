@@ -33,7 +33,7 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'tomtom/tcomment_vim'
 " Plug 'majutsushi/tagbar'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
 " Plug 'jmcantrell/vim-virtualenv'
 Plug 'christoomey/vim-tmux-navigator'
@@ -327,3 +327,10 @@ augroup FastEscape
 	au InsertEnter * set timeoutlen=0
 	au InsertLeave * set timeoutlen=1000
 augroup END
+
+" Easy copy pasting.. I should have used this a long time ago..
+nnoremap <C-c> "+y
+vnoremap <C-c> "+y
+nnoremap <C-p> "+p
+vnoremap <C-p> "+p
+inoremap <C-p> <C-r>+
