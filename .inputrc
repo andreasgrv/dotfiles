@@ -6,12 +6,7 @@
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
-"\e.": "ls -lth \015"
-"\em": "ls -lSh \015"
-"\ev": "`xclip -o`"
-"\ec": " | xclip"
 "\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
-"\eo": " > out"
 
 set colored-stats on
 set colored-completion-prefix on
