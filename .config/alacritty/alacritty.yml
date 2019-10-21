@@ -1,5 +1,14 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
+window:
+  decorations: full
+  padding:
+    x: 0
+    y: 0
+
+  dimensions:
+    columns: 120
+    lines: 40
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -13,19 +22,6 @@ env:
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
   TERM: xterm-256color-italic
-
-# Window dimensions in character columns and lines
-# (changes require restart)
-window.dimensions:
-  columns: 120
-  lines: 40
-
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-window.padding:
-  x: 0
-  y: 0
 
 
 # Display tabs using this many cells (changes require restart)
@@ -263,20 +259,5 @@ scrolling:
   # Specifying '0' will disable scrolling.
   history: 0
 
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
-  multiplier: 3
-
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
-
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
 
 dynamic_title: true
