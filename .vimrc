@@ -44,7 +44,7 @@ Plug 'honza/vim-snippets'
 " syntax + tags + highlighting
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular', { 'for': 'mkd' }
-" Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
+Plug 'chase/vim-ansible-yaml', { 'for': 'yaml' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
  "Plug 'mitsuhiko/vim-jinja', { 'for': 'html' }
 " Plug 'othree/html5.vim', { 'for': 'html' }
