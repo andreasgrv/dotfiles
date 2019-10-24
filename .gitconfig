@@ -1,6 +1,7 @@
 [user]
 	name = Andreas Grivas
 	email = andreasgrv@gmail.com
+	signingkey = 24A721BB42D9A790
 [core]
 	editor = vim
     excludesfile = ~/.git-gitignore
@@ -22,3 +23,9 @@
 	# stolen from http://fredkschott.com/post/2014/02/git-log-is-so-2005/ 
 	lg =	log --color --decorate --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 	lgall = log --oneline --color --graph --decorate --all
+[gpg]
+	program = /usr/bin/gpg
+[commit]
+	gpgsign = true
+[tag]
+	forceSignAnnotated = true
