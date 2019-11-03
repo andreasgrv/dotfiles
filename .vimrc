@@ -130,8 +130,10 @@ map <ScrollWheelDown> 4<C-E>
 nnoremap Q <Nop>
 " -------------------- Text folding ------------------------------"
 
-set foldmethod=indent
-set foldlevel=99
+set foldmethod=manual
+set foldnestmax=2
+set foldminlines=5
+set foldlevel=2
 
 " ------------------- Indentation settings ------------------------" 
 
@@ -235,6 +237,10 @@ augroup Python
 	autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 	" easy print using surround with char p
 	autocmd FileType python let g:surround_112 = "print(\r)"
+	set foldmethod=indent
+	set foldnestmax=2
+	set foldminlines=5
+	set foldlevel=2
 augroup END
 
 "-------------------------- C++ --------------------------"
@@ -246,6 +252,10 @@ augroup Cpp
 	autocmd FileType cpp let g:surround_112 = "std::cout<<\r<<std::endl;"
 	" Make options 
 	autocmd QuickFixCmdPost * nested cwindow | redraw!
+	set foldmethod=indent
+	set foldnestmax=2
+	set foldminlines=5
+	set foldlevel=2
 augroup END
 
 "-------------------------- TeX --------------------------"
