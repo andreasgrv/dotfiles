@@ -24,6 +24,9 @@ Control-l: clear-screen
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
+"\ef": shell-forward-word
+"\eb": shell-backward-word
+
 "\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
 
 
@@ -38,11 +41,14 @@ Control-l: clear-screen
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
+"\ef": shell-forward-word
+"\eb": shell-backward-word
+
 # Pressing tab will list all completions & select the first one. Pressing it
 # again will cycle through available completions.
-TAB: menu-complete
+Control-k: menu-complete
 # Shift-TAB cycles completions backward
-"\e[Z": menu-complete-backward
+Control-j: menu-complete-backward
 
 "\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
 
