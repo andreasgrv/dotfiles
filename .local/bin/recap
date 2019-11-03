@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Assumes this is run from the directory you have diary entries in.
+
+for i in $(seq 7 -1 1)
+do
+	prev_fname=$(date --date="$i day ago" +"%Y-%m-%d-%a.txt")
+	if [ -f $prev_fname ]
+	then
+		text=$(cat "$prev_fname")
+		filtered=$(echo "$text" | todo_filter --section conclusions)
+		if [[ ! -z "${filtered/[[:blank]]//}" ]]
+		then
+			printf "%s\n" $prev_fname
+			echo "$filtered"
+		fi
+	fi
+done
