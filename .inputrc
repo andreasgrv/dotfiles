@@ -12,3 +12,21 @@ set colored-stats on
 set colored-completion-prefix on
 set skip-completed-text on
 set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set completion-ignore-case on
+
+# # If there are more than 200 possible completions for a word, ask to show them all
+set completion-query-items 200
+set completion-prefix-display-length 2
+set editing-mode vi
+
+$if mode=vi
+
+set keymap vi-command
+# these are for vi-command mode
+Control-l: clear-screen
+
+set keymap vi-insert
+# these are for vi-insert mode
+Control-l: clear-screen
+$endif
