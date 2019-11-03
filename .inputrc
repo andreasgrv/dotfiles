@@ -1,19 +1,10 @@
-## arrow up
-"\e[A": history-search-backward
-## arrow down
-"\e[B": history-search-forward
-## set home and end key functionality
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
-
-"\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
-
 set colored-stats on
 set colored-completion-prefix on
 set skip-completed-text on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set completion-ignore-case on
+set match-hidden-files off
 
 # # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
@@ -25,8 +16,36 @@ $if mode=vi
 set keymap vi-command
 # these are for vi-command mode
 Control-l: clear-screen
+## arrow up
+"\e[A": history-search-backward
+## arrow down
+"\e[B": history-search-forward
+## set home and end key functionality
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+"\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
+
 
 set keymap vi-insert
 # these are for vi-insert mode
 Control-l: clear-screen
+## arrow up
+"\e[A": history-search-backward
+## arrow down
+"\e[B": history-search-forward
+## set home and end key functionality
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# Pressing tab will list all completions & select the first one. Pressing it
+# again will cycle through available completions.
+TAB: menu-complete
+# Shift-TAB cycles completions backward
+"\e[Z": menu-complete-backward
+
+"\et": "if [[ $(ps -e | grep tmux | wc -l) == 0 ]]; then tmux -2; else tmux -2 attach; fi\015"
+
+# glob patterns without executing, eg: 'rm *x'
+"\ee": glob-expand-word
 $endif
