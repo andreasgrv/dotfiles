@@ -337,6 +337,7 @@ highlight Comment cterm=italic
 " and https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 " Also note that running vim in tmux can have the same effect
 " use 'set -s escape-time 0' in tmux.conf
+
 augroup FastEscape
 	autocmd!
 	au InsertEnter * set timeoutlen=0
@@ -345,6 +346,7 @@ augroup END
 
 " Easy copy pasting.. I should have used this a long time ago..
 nnoremap <C-c> "+y
+vnoremap <C-x> "+c<ESC>
 vnoremap <C-c> "+y
 nnoremap <C-p> "+p
 vnoremap <C-p> "+p

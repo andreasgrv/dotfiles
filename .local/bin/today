@@ -24,11 +24,15 @@ if [ ! -f $FNAME ]
 then
 	touch $FNAME
 	TEMPLATE=$(cat <<-END
+		Vision - high level goals (Are you making progress towards this?):
+			
 		Goals for today:
 			
 		Papers:
 			
 		Resources:
+			
+		Quotes:
 			
 		Thoughts:
 			
@@ -41,6 +45,17 @@ then
 	# If the variable is set from the function
 	if [[ $PREV_FOUND ]]
 	then
+		# Append all High level vision goals
+		lines_to_add=$(grep -e "( ) \?" $PREV_FOUND)
+		echo $lines_to_add
+		match="Vision - high level goals"
+		# Insert below line matching match var
+		TMP_FILE=/tmp/soliloquy_file_tmp
+		echo "$lines_to_add" > $TMP_FILE
+		sed -i /"$match"/r\ $TMP_FILE $FNAME
+		rm $TMP_FILE
+		printf "Added %d high level goals from last time..\n" $(echo "$lines_to_add" | wc -l )
+
 		# Append all the todos not completed to next entry
 		lines_to_add=$(grep -e "\[ \] \?" $PREV_FOUND)
 		match="Goals for today"
@@ -55,3 +70,5 @@ then
 else
 	(>&2 echo "Today's entry already exists!")
 fi
+# vim -u ~/.vimrc $FNAME
+vimx $FNAME

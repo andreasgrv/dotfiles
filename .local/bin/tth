@@ -6,7 +6,9 @@ uname=${tokens[0]}
 hostname=${tokens[1]}
 if [[ "$uname" =~ "agr" ]]
 then
-	ssh -tt "$hostname" nice -n 19 bash -ic 'tmux new'
+	tmux rename-window $hostname
+	ssh "$1" -X -t bash -ic '.local/bin/tmux new'
+	# ssh -tt "$hostname" bash -ic '.local/bin/tmux new'
 else
 	ssh "$1" -X -t bash -ic 'tmux new'
 fi

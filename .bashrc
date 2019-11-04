@@ -223,6 +223,64 @@ export PROMPT_COMMAND=prompt_command
 export HOST_COLOUR
 export LC_ALL=en_GB.UTF-8  
 export LANG=en_GB.UTF-8
-export TERM="xterm-256color-italic"
-export CUDA_PATH=/usr/local/cuda-10.0
+export TERM=xterm-256color-italic
+# export TERM=xterm-256color
+# export PATH="$PATH:/opt/cuda-9.1.85/bin"
+# export CUDA_PATH=/opt/cuda-9.1.85
+# export PATH="$PATH:/opt/cuda-9.0.176.1/bin"
+# export CUDA_PATH=/opt/cuda-9.0.176.1
+export PATH="$PATH:/opt/cuda-10.1.168_418_67/bin"
+export CUDA_PATH=/opt/cuda-10.1.168_418_67
+export CUDA_HOME=/opt/cuda-10.1.168_418_67
 export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=/afs/inf.ed.ac.uk/group/project/biomedTM/users/agrivas/local_cuda:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=/opt/cuDNN-7.1_9.1/lib64:$LD_LIBRARY_PATH
+# export CFLAGS=-I/opt/cuDNN-7.1_9.1/include
+# export LDFLAGS=-L/opt/cuDNN-7.1_9.1/lib64
+
+CUDNN_VERSION=cuDNN-7.6.0.64_10.1
+export LD_LIBRARY_PATH=/opt/$CUDNN_VERSION/lib64:$LD_LIBRARY_PATH
+export CUDNN_LIBRARY=/opt/$CUDNN_VERSION/lib64
+export CUDNN_INCLUDE_DIR=/opt/$CUDNN_VERSION/include
+export CFLAGS=-I$CUDNN_INCLUDE_DIR
+export LDFLAGS=-L$CUDNN_LIBRARY
+
+# . /afs/inf.ed.ac.uk/user/a/agrivas/Experimental/order-embeddings-wordnet/distro/install/bin/torch-activate
+
+# If we are on crypt - load local python and bins
+if [[ $HOSTNAME == "crypt.inf.ed.ac.uk" ]]
+then
+	PATH=/disk/data1/radiology/users/agrivas/.local/bin:$PATH
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/disk/data1/radiology/users/agrivas/.local/lib
+fi
+
+# Attempt to start gpg-agent if we are on dice
+if [[ $HOSTNAME == "bruntsfield.inf.ed.ac.uk" ]]
+then
+	# gpg-agent will return 0 status in $? if already running
+	gpg-agent > /dev/null 2>&1
+	# If gpg-agent is not running
+	if [ "$?" -ne "0" ]
+	then
+		# If there is a previous env file, try to parse it.
+		# It can be the case that it is running but GPG_AGENT_INFO is not set
+		if [ -f "${HOME}/.gpg-agent-info" ]
+		then
+			# Attempt to set GPG_AGENT_INFO
+			. "${HOME}/.gpg-agent-info"
+			export GPG_AGENT_INFO
+			gpg-agent > /dev/null 2>&1
+			# gpg-agent definitely not running, try to start a new instance
+			if [ "$?" -ne "0" ]
+			then
+				# Because of AFS we can't use the standard approach with sockets.
+				# http://computing.help.inf.ed.ac.uk/FAQ/how-start-gpg-agent
+				gpg-agent --daemon --no-use-standard-socket --write-env-file "${HOME}/.gpg-agent-info" > /dev/null 2>&1
+				. "${HOME}/.gpg-agent-info"
+				export GPG_AGENT_INFO
+			fi
+		fi
+		GPG_TTY=$(tty)
+		export GPG_TTY
+	fi
+fi
