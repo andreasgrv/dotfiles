@@ -28,6 +28,8 @@ then
 			
 		Goals for today:
 			
+		Meeting items:
+
 		Papers:
 			
 		Resources:
@@ -65,6 +67,16 @@ then
 		sed -i /"$match"/r\ $TMP_FILE $FNAME
 		rm $TMP_FILE
 		printf "Added %d incomplete todos from last time..\n" $(echo "$lines_to_add" | wc -l )
+
+		# Append all meeting notes not completed to next entry
+		lines_to_add=$(grep -e "{ } \?" $PREV_FOUND)
+		match="Meeting items"
+		# Insert below line matching match var
+		TMP_FILE=/tmp/soliloquy_file_tmp
+		echo "$lines_to_add" > $TMP_FILE
+		sed -i /"$match"/r\ $TMP_FILE $FNAME
+		rm $TMP_FILE
+		printf "Added %d meeting items from last time..\n" $(echo "$lines_to_add" | wc -l )
 	fi
 	printf "Entry created: %s\n" $FNAME
 else
